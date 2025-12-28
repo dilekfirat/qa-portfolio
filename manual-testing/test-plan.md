@@ -1,7 +1,7 @@
 # Test Plan - SauceDemo WebApp
 
 ## 1. Introduction
-This test plan contains the testing strategy, scope, resources and schedule for testing for SauceDemo WebApp (https://www.saucedemo.com/)
+This test plan contains the testing strategy, scope, resources and schedule for testing SauceDemo WebApp (https://www.saucedemo.com/)
 This document serves as a reference for manual testing activities before automation is introduced.
 
 ## 2. Scope
@@ -32,5 +32,19 @@ This document serves as a reference for manual testing activities before automat
 ## 5. Entry and Exit Criteria
 
 ### 5.1 Entry Criteria
+- Application is accessible
+- Test environment is stable
+- Test cases are reviewed and approved
 
 ### 5.2 Exit Criteria
+- All planned test cases are executed
+- Critical and high severity defects are fixed or documented
+- Test summary is completed
+
+## 6. Risks and Mitigation
+
+| Risk | Impact | Mitigation |
+|-----|--------|------------|
+| Test data changes | Medium | Use predefined demo users |
+| Application instability | Medium | Focus on core flows |
+| Limited test time | Low | Prioritize high-risk areas |
