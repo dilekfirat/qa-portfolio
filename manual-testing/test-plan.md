@@ -1,7 +1,7 @@
 # Test Plan - SauceDemo WebApp
 
 ## 1. Introduction
-This test plan contains the testing strategy, scope, resources and schedule for testing SauceDemo WebApp (https://www.saucedemo.com/)
+This test plan contains the scope, testing strategy, test environment, entry and exit criteria, risks and schedule for testing SauceDemo WebApp (https://www.saucedemo.com/)
 This document serves as a reference for manual testing activities before automation is introduced.
 
 ## 2. Scope
@@ -48,3 +48,12 @@ This document serves as a reference for manual testing activities before automat
 | Test data changes | Medium | Use predefined demo users |
 | Application instability | Medium | Focus on core flows |
 | Limited test time | Low | Prioritize high-risk areas |
+
+## 7. Test Schedule
+
+| Activity | Estimated Time |
+|--------|----------------|
+| Test planning | 1 day |
+| Test case design | 1–2 days |
+| Test execution | 1 day |
+| Defect reporting | Ongoing during execution |
