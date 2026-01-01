@@ -1,7 +1,7 @@
 # Software Testing Portfolio Project
 
 ## Project Overview
-This repository contains a **manual software testing portfolio project** created to demonstrate my software testing skills, test design approach, and understanding of QA best practices.
+This repository contains a **personal software testing practice project** created to refresh my software testing skills, practice test design, and apply QA best practices in a structured way.
 
 The application under test is **SauceDemo**, a sample e-commerce web application commonly used for testing practice.
 
