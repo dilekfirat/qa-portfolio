@@ -1,4 +1,4 @@
-# Software Testing Portfolio Project
+# Software Testing Practice Project
 
 ## Project Overview
 This repository contains a **personal software testing practice project** created to refresh my software testing skills, practice test design, and apply QA best practices in a structured way.
