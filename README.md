@@ -1,30 +1,37 @@
 # Software Testing Practice Project
 
 ## Project Overview
-This repository contains a **personal software testing practice project** created to refresh my software testing skills, practice test design, and apply QA best practices in a structured way.
+This repository contains a personal software testing practice project created to refresh my software testing skills, practice test design, learn about automating tests with playwright and apply QA best practices in a structured way.
 
-The application under test is **SauceDemo**, a sample e-commerce web application commonly used for testing practice.
+The application under test is *SauceDemo*, a sample e-commerce web application commonly used for testing practice.
 
----
+## Repository Structure
+
+### manual/
+Contains manual testing artifacts such as:
+- Test plan
+- Manual test cases (Excel)
+- Sample bug reports and documentation
+
+### automation/
+Contains UI automation tests implemented with *Playwright*:
+- tests/ (Playwright test specs)
+- playwright.config.js
+- package.json and package-lock.json
 
 ## Scope of Testing
 The following functional areas are covered:
-
 - Login functionality
 - Product listing and sorting
-- Single product (product details) pages
+- Single product pages (product details)
 - Cart functionality
 - Checkout process
 
 Testing includes:
 - Functional test cases
 - Positive and negative scenarios
-- Boundary and validation checks where applicable
-
----
 
 ## Test Artifacts
-This repository includes the following test artifacts:
 
 ### Test Plan
 - Defines test strategy
@@ -33,9 +40,8 @@ This repository includes the following test artifacts:
 - Test environment
 - Entry and exit criteria
 
-### Test Cases
-Test cases are created and executed in **Excel files**, organized by functional area:
-
+### Manual Test Cases
+Manual test cases are created and executed in Excel files, organized by functional area:
 - Login
 - Products
 - Cart
@@ -47,36 +53,41 @@ Each test case includes:
 - Actual results
 - Execution status
 
----
-
-## Test Approach
-- Test cases are organized by business functionality
-- Both happy path and negative scenarios are covered
-- Focus is on realistic user behavior and risk-based testing
-- Exploratory testing ideas are considered but not fully executed in this phase
-
----
+### Bug Reports
+Sample bug reports are documented in markdown to demonstrate defect reporting structure and traceability.
 
 ## Tools Used
 - Manual testing techniques
 - Microsoft Excel (test case design and execution)
 - GitHub (version control and documentation)
+- VS Code with Playwright extension (UI test automation)
 
----
+## Run Automation Tests Locally
 
-## Limitations & Future Improvements
-This project currently focuses on **manual testing only**.
+From the repository root:
 
-Possible future improvements include:
-- Test automation (e.g. Selenium or Playwright)
-- API testing
-- Performance testing
-- Defect tracking using a dedicated tool (e.g. Jira)
+bash
+cd automation
+npm ci
+npx playwright install
+npx playwright test
 
-Test coverage was intentionally limited to representative scenarios to focus on **test design quality rather than quantity**.
 
----
+Optional (Playwright UI mode):
+
+bash
+npx playwright test --ui
+
+
+## Limitations and Future Improvements
+This is a practice project and coverage is intentionally limited to representative scenarios to focus on test design quality rather than quantity.
+
+Possible future improvements:
+- Add more automated test coverage for critical flows
+- Add API testing practice
+- Add a GitHub Actions workflow to run Playwright tests automatically
+- Add reusable helpers (for example login setup in beforeEach)
 
 ## Author
-**BSc. Dilek Firat**  
-ISTQB Certified Software Tester
+*BSc. Dilek Firat*  
+ISTQB Certified Tester (CTFL)
