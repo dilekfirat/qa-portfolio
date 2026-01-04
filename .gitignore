@@ -15,7 +15,7 @@ test-results/
 # =========================
 # Local / practice files
 # =========================
-automation/tests/practice*.spec.js
+automation/tests/practice.spec.js
 
 
 # =========================
