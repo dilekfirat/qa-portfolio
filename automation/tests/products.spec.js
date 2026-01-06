@@ -14,6 +14,7 @@ test.beforeEach(async ({ page }) => {
 
 });
 
+
 test('View product details page', async ({ page }) => {
 
   await page.locator('[data-test="item-4-title-link"]').click();
