@@ -1,14 +1,21 @@
 import { test, expect } from '@playwright/test';
 
+//Login before each product test
+test.beforeEach(async ({ page }) => {
+
+    await page.goto('https://www.saucedemo.com/');
+    await expect(page).toHaveTitle(/Swag Labs/);
+
+    await page.locator('[data-test="username"]').fill('standard_user');
+    await page.locator('[data-test="password"]').fill('secret_sauce');
+    await page.locator('[data-test="login-button"]').click();
+    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    await expect(page.locator('text=Products')).toHaveCount(1)
+
+});
+
 test('View product details page', async ({ page }) => {
 
-  await page.goto('https://www.saucedemo.com/');
-  await page.fill('[data-test="username"]', 'standard_user');
-  await page.fill('[data-test="password"]', 'secret_sauce');
-  await Promise.all([
-    page.waitForURL('**/inventory.html'),
-    page.click('[data-test="login-button"]')
-  ]);
   await page.locator('[data-test="item-4-title-link"]').click();
   await expect(page).toHaveURL('https://www.saucedemo.com/inventory-item.html?id=4');
   await expect(page.locator('.inventory_details_name.large_size')).toHaveText('Sauce Labs Backpack');
@@ -17,14 +24,6 @@ test('View product details page', async ({ page }) => {
 })
 
 test('test sorting functionality', async ({ page }) => {
-
-  await page.goto('https://www.saucedemo.com/');
-  await page.fill('[data-test="username"]', 'standard_user');
-  await page.fill('[data-test="password"]', 'secret_sauce');
-  await Promise.all([
-    page.waitForURL('**/inventory.html'),
-    page.click('[data-test="login-button"]')
-  ]);
 
   //Sort by price low to high
   await page.locator('[data-test="product-sort-container"]').selectOption('lohi');
