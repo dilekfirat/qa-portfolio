@@ -71,18 +71,18 @@ Sample bug reports are documented in markdown to demonstrate defect reporting st
 
 From the repository root:
 
-bash
+```bash
 cd automation
 npm ci
-npx playwright install
+npx playwright install --with-deps
 npx playwright test
-
+```
 
 Optional (Playwright UI mode):
 
-bash
+```bash
 npx playwright test --ui
-
+```
 
 ## Limitations and Future Improvements
 This is a practice project and coverage is intentionally limited to representative scenarios to focus on test design quality rather than quantity.
