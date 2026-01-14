@@ -48,10 +48,15 @@ Manual test cases are created and executed in Excel files, organized by function
 - Checkout
 
 Each test case includes:
-- Test steps
-- Expected results
-- Actual results
-- Execution status
+- Test Case ID
+- Test Case Title
+- Preconditions
+- Test Steps
+- Test Data
+- Expected Results
+- Actual Results
+- Priority
+- Execution Status
 
 ### Bug Reports
 Sample bug reports are documented in markdown to demonstrate defect reporting structure and traceability.
@@ -85,7 +90,6 @@ This is a practice project and coverage is intentionally limited to representati
 Possible future improvements:
 - Add more automated test coverage for critical flows
 - Add API testing practice
-- Add a GitHub Actions workflow to run Playwright tests automatically
 - Add reusable helpers (for example login setup in beforeEach)
 
 ## Author
