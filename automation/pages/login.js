@@ -1,5 +1,7 @@
+// Creates a LoginPage class to encapsulate login page interactions
 exports.LoginPage = class LoginPage {
 
+    // Define selectors and constructor
     constructor(page) {
         this.page = page;
         this.usernameInput = page.locator('[data-test="username"]');
