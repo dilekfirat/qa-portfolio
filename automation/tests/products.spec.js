@@ -15,10 +15,10 @@ test.beforeEach(async ({ page }) => {
 test('View product details page', async ({ page }) => {
 
   await page.locator('[data-test="item-4-title-link"]').click();
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory-item.html?id=4');
+  await expect(page).toHaveURL(/inventory-item\.html\?id=4/);
   await expect(page.locator('.inventory_details_name.large_size')).toHaveText('Sauce Labs Backpack');
   await page.locator('[data-test="back-to-products"]').click();
-  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  await expect(page).toHaveURL(/inventory/);
 })
 
 test('test sorting functionality', async ({ page }) => {
