@@ -11,7 +11,7 @@ exports.LoginPage = class LoginPage {
     }
     // Navigate to the login page
     async navigate() {
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto('/');
     }
     // Perform login action
     async login(username, password) {
