@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login.js';
+import { LoginPage } from '../pages/login.page.js';
 
 //Login before each product test
 test.beforeEach(async ({ page }) => {
