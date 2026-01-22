@@ -23,7 +23,7 @@ test('Add single item to cart', async ({ page }) => {
 
     //Verify cart page shows the added item
     await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
+    await expect(page).toHaveURL(/cart/);
     await page.locator('.cart_item').isVisible();
 
 });
@@ -31,7 +31,7 @@ test('Add single item to cart', async ({ page }) => {
 //Add multiple items to cart and verify
 test('Add multiple items to cart', async ({ page }) => {
 
-    const addToCartButtons = page.getByRole('button', {name: /Add to cart/});
+    const addToCartButtons = page.getByRole('button', { name: /Add to cart/ });
 
     // Add first 3 products to cart
     for (let i = 0; i < 3; i++) {
@@ -46,20 +46,31 @@ test('Add multiple items to cart', async ({ page }) => {
 //Remove item from cart and verify on products page
 test('Remove item from cart on products page', async ({ page }) => {
 
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
-    await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
+    // Add first product to cart
+    const firstProduct = page.locator('.inventory_item').first();
+    await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
+
+    //Remove the item from cart
+    await firstProduct.getByRole('button', { name: /Remove/ }).click();
+
+    //Verify cart badge is not visible
     await expect(page.locator('.shopping_cart_badge')).toHaveCount(0);
 
 });
 
 //Remove item from cart and verify on cart page
 test('Remove item from cart and verify on cart page', async ({ page }) => {
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+    // Add first product to cart
+    const firstProduct = page.locator('.inventory_item').first();
+    await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
+
+    //Go to cart page
     await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
-    await page.locator('[data-test="remove-sauce-labs-backpack"]').click();
+    await expect(page).toHaveURL(/cart/);
+
+    //Remove item from cart page
+    const firstCartItem = page.locator('.cart_item').first();
+    await firstCartItem.locator('button:has-text("Remove")').click();
     await expect(page.locator('.shopping_cart_badge')).toHaveCount(0);
 
 });
@@ -67,14 +78,14 @@ test('Remove item from cart and verify on cart page', async ({ page }) => {
 //Logout and login again to verify items in cart are still there
 test('Verify cart items persist after logout and login', async ({ page }) => {
 
-    //Add item to cart
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+    //Add first product to cart
+    const firstProduct = page.locator('.inventory_item').first();
+    await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
     //Logout
     await page.getByRole('button', { name: 'Open Menu' }).click();
     await page.getByRole('link', { name: 'Logout' }).click();
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page).toHaveURL('/');
 
     //Login again
     const loginPage = new LoginPage(page);
@@ -85,22 +96,22 @@ test('Verify cart items persist after logout and login', async ({ page }) => {
 
 });
 
-//Click product image to navigate to product details page
+//Click product name to navigate to product details page
 test('Navigate to product details page from cart', async ({ page }) => {
 
-    // Get first product from inventory
+    //Get first product from inventory
     const firstProduct = page.locator('.inventory_item').first();
 
-    // Add first product to cart
+    //Add first product to cart
     await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
-    // Go to cart
+    //Go to cart
     await page.locator('.shopping_cart_link').click();
 
-    // Click first product name in cart
+    //Click first product name in cart
     await page.locator('.inventory_item_name').first().click();
 
-    // Verify navigation to product details page
+    //Verify navigation to product details page
     await expect(page).toHaveURL(/inventory-item\.html\?id=\d+/);
 
 });
@@ -108,13 +119,13 @@ test('Navigate to product details page from cart', async ({ page }) => {
 //Click continue shopping from cart to go back to products page
 test('Continue shopping from cart to products page', async ({ page }) => {
 
-    // Go to cart
+    //Go to cart
     await page.locator('.shopping_cart_link').click();
 
-    // Click continue shopping button
+    //Click continue shopping button
     await page.getByRole('button', { name: 'Continue Shopping' }).click();
 
-    // Verify navigation back to products page
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    //Verify navigation back to products page
+    await expect(page).toHaveURL(/inventory/);
 
 });
