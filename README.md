@@ -31,6 +31,8 @@ Testing includes:
 - Functional test cases
 - Positive and negative scenarios
 
+The automation scope focuses on critical user flows and representative scenarios rather than exhaustive coverage.
+
 ## Test Artifacts
 
 ### Test Plan
@@ -60,6 +62,25 @@ Each test case includes:
 
 ### Bug Reports
 Sample bug reports are documented in markdown to demonstrate defect reporting structure and traceability.
+
+## Commit Message Guidelines
+
+This project follows simple, descriptive commit messages to keep the history readable.
+
+- **test:** for adding or updating automated tests  
+  _Example:_ `test: add checkout automation tests`
+
+- **refactor:** for restructuring code without changing behavior  
+  _Example:_ `refactor: make cart tests product-independent`
+
+- **docs:** for documentation updates  
+  _Example:_ `docs: update README`
+
+- **chore:** for maintenance or configuration changes  
+  _Example:_ `chore: update dependencies`
+
+Each commit focuses on a single, logical change.
+
 
 ## Tools Used
 - Manual testing techniques
