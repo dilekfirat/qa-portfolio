@@ -1,10 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page.js';
+import { CartPage } from '../pages/cart.page.js';
+
+let loginPage;
+let cartPage;
 
 //Login before each cart test
 test.beforeEach(async ({ page }) => {
 
-    const loginPage = new LoginPage(page);
+    loginPage = new LoginPage(page);
+    cartPage = new CartPage(page);
 
     await loginPage.navigate();
     await loginPage.login('standard_user', 'secret_sauce');
@@ -65,12 +70,10 @@ test('Remove item from cart and verify on cart page', async ({ page }) => {
     await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
     //Go to cart page
-    await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL(/cart/);
+    await cartPage.navigate();
 
     //Remove item from cart page
-    const firstCartItem = page.locator('.cart_item').first();
-    await firstCartItem.locator('button:has-text("Remove")').click();
+    await cartPage.removeFirstItem();
     await expect(page.locator('.shopping_cart_badge')).toHaveCount(0);
 
 });
@@ -120,7 +123,7 @@ test('Navigate to product details page from cart', async ({ page }) => {
 test('Continue shopping from cart to products page', async ({ page }) => {
 
     //Go to cart
-    await page.locator('.shopping_cart_link').click();
+    await cartPage.navigate();
 
     //Click continue shopping button
     await page.getByRole('button', { name: 'Continue Shopping' }).click();
