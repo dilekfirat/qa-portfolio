@@ -1,10 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page.js';
+import { CartPage } from '../pages/cart.page.js';
+
+let loginPage;
+let cartPage;
 
 //Login before each checkout test
 test.beforeEach(async ({ page }) => {
 
-    const loginPage = new LoginPage(page);
+    loginPage = new LoginPage(page);
+    cartPage = new CartPage(page);
 
     await loginPage.navigate();
     await loginPage.login('standard_user', 'secret_sauce');
@@ -19,11 +24,10 @@ test('Complete checkout process', async ({ page }) => {
     await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
     //Go to cart page
-    await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL(/cart/);
+    await cartPage.navigate();
 
     //Proceed to checkout
-    await page.getByRole('button', { name: /Checkout/ }).click();
+    await cartPage.proceedToCheckout();
     await expect(page).toHaveURL(/checkout-step-one/);
 
     //Fill in checkout information and continue
@@ -54,11 +58,10 @@ test('Checkout missing information shows error', async ({ page }) => {
     await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
     //Go to cart page
-    await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL(/cart/);
+    await cartPage.navigate();
 
     //Proceed to checkout
-    await page.getByRole('button', { name: /Checkout/ }).click();
+    await cartPage.proceedToCheckout();
     await expect(page).toHaveURL(/checkout-step-one/);
 
     //Leave fields empty and continue
@@ -79,12 +82,10 @@ test('Cancel checkout returns to cart page', async ({ page }) => {
     await firstProduct.getByRole('button', { name: /Add to cart/ }).click();
 
     //Go to cart page
-    await page.locator('.shopping_cart_link').click();
-    await expect(page).toHaveURL(/cart/);
+    await cartPage.navigate();
 
     //Proceed to checkout
-    await page.getByRole('button', { name: /Checkout/ }).click();
-    await expect(page).toHaveURL(/checkout-step-one/);
+    await cartPage.proceedToCheckout();
 
     //Click cancel button
     await page.getByRole('button', { name: /Cancel/ }).click();
